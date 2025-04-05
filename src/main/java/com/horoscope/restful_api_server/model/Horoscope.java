@@ -23,6 +23,8 @@ public class Horoscope {
     private String element;
     @Column(name = "qualities")
     private List<String> qualities;
+    @Column(name = "image")
+    private String image;
 
     public Horoscope() {}
 
@@ -34,6 +36,14 @@ public class Horoscope {
         this.planet = planet;
         this.element = element;
         this.qualities = qualities;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public void setId(int id) {
