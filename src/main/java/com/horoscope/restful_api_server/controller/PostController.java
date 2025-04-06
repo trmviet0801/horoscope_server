@@ -16,9 +16,9 @@ public class PostController {
     @Autowired
     private PostService postService;
 
-    @GetMapping("post")
-    public List<Post> getPosts() {
-        return postService.getPosts();
+    @GetMapping("post/page/{pageNum}")
+    public List<Post> getPosts(@PathVariable int pageNum) {
+        return postService.getPosts(pageNum);
     }
 
     @GetMapping("post/{postId}")

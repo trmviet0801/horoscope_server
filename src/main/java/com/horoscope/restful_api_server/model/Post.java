@@ -13,7 +13,7 @@ public class Post {
     private int postId;
     @Column(name = "title")
     private String title;
-    @Column(name = "content")
+    @Column(name = "content", columnDefinition = "TEXT")
     private String content;
     @Column(name = "publish_date")
     private String publishDate;
