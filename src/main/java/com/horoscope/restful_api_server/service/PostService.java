@@ -1,8 +1,10 @@
 package com.horoscope.restful_api_server.service;
 
+import com.horoscope.restful_api_server.dto.PostsDto;
 import com.horoscope.restful_api_server.model.Post;
 import com.horoscope.restful_api_server.repo.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,9 +20,10 @@ public class PostService {
     @Autowired
     private PostRepository postRepository;
 
-    public List<Post> getPosts(int pageNum) {
+    public PostsDto getPosts(int pageNum) {
         Pageable pageable = PageRequest.of(pageNum, 10);
-        return postRepository.findAll(pageable).getContent();
+        Page<Post> posts = postRepository.findAll(pageable);
+        return new PostsDto(posts.getContent(), posts.getTotalPages());
     }
 
     public Post getPost(int postId) {
@@ -35,7 +38,7 @@ public class PostService {
         if (quantity > dbSize)
             return List.of();
         if (quantity == dbSize)
-            return getPosts(0);
+            return getPosts(0).getPosts();
 
         for (int i = 0; i < quantity; i++) {
             boolean cont = true;

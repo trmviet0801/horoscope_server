@@ -1,5 +1,6 @@
 package com.horoscope.restful_api_server.controller;
 
+import com.horoscope.restful_api_server.dto.PostsDto;
 import com.horoscope.restful_api_server.model.Post;
 import com.horoscope.restful_api_server.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class PostController {
     private PostService postService;
 
     @GetMapping("post/page/{pageNum}")
-    public List<Post> getPosts(@PathVariable int pageNum) {
+    public PostsDto getPosts(@PathVariable int pageNum) {
         return postService.getPosts(pageNum);
     }
 
